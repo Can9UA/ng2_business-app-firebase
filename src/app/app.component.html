@@ -2,8 +2,14 @@
   <div class="container">
     <h1>Firebase items</h1>
     <ul>
-      <li *ngFor="let item of items | async">
-        {{item.name}} {{item.body}}
+      <li *ngFor="let business of businesses">
+        {{business.company}} - {{business.category}}
+      </li>
+    </ul>
+
+    <ul>
+      <li *ngFor="let category of categories">
+        {{category.name}}
       </li>
     </ul>
   </div>

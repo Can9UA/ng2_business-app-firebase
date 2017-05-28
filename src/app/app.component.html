@@ -1,5 +1,10 @@
 <main>
   <div class="container">
-    <h1>ads</h1>
+    <h1>Firebase items</h1>
+    <ul>
+      <li *ngFor="let item of items | async">
+        {{item.name}} {{item.body}}
+      </li>
+    </ul>
   </div>
 </main>

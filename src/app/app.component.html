@@ -16,6 +16,24 @@
 <main class="py-4">
   <div class="container">
 
+    <section>
+      <div class="card">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-md-6">
+              <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-primary">Add Business</button>
+            </div>
+            <div class="col-md-6">
+              <select (change)="filterCategory(category.value)" #category class="form-control float-right">
+                <option value="">Select Category</option>
+                <option value="{{category.name}}" *ngFor="let category of categories;">{{category.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section *ngIf="appState === 'extend'" class="my-4">
       <div *ngFor="let business of businesses; index as i; trackBy: $key">
         <div *ngIf="business.$key == activeKey" class="card">

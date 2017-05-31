@@ -16,7 +16,7 @@
 <main class="py-4">
   <div class="container">
 
-    <section>
+    <section class="my-4">
       <div class="card">
         <div class="card-block">
           <div class="row">
@@ -93,9 +93,11 @@
             <th class="align-middle">{{business.state}}</th>
             <th class="align-middle text-center">{{business.years_in_business}}</th>
             <th class="align-middle text-right">
-              <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-primary">More</button>
-              <button  type="button" class="btn btn-warning">Edit</button>
-              <button  type="button" class="btn btn-danger">Delete</button>
+              <div class="btn-group">
+                <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-secondary">More</button>
+                <button  type="button" class="btn btn-secondary">Edit</button>
+                <button  type="button" class="btn btn-danger">Delete</button>
+              </div>
             </th>
           </tr>
         </tbody>

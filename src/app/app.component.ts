@@ -13,6 +13,8 @@ import { Category } from './shared/Category.interface';
 export class AppComponent implements OnInit {
   businesses: Business[];
   categories: Category[];
+  appState: string;
+  activeKey: string;
 
   constructor (private _firebaseServie: FirebaseService) {
   }
@@ -29,5 +31,13 @@ export class AppComponent implements OnInit {
         this.categories = categories;
       }
     );
+  }
+
+  changeState(state: string, key: string) {
+    if (key) {
+      this.activeKey = key;
+    }
+
+    this.appState = state;
   }
 }

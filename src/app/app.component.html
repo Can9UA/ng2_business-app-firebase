@@ -13,23 +13,42 @@
     </nav>
   </div>
 </header>
-<main>
+<main class="py-4">
   <div class="container">
-    <ul>
-      <li *ngFor="let business of businesses">
-        {{business.company}} - {{business.category}}
-      </li>
-    </ul>
 
-    <ul>
-      <li *ngFor="let category of categories">
-        {{category.name}}
-      </li>
-    </ul>
+    <section *ngIf="appState === 'extend'" class="my-4">
+      <div *ngFor="let business of businesses; index as i; trackBy: $key">
+        <div *ngIf="business.$key == activeKey" class="card">
+          <div class="card-header">
+            <h2>Info</h2>
+          </div>
+          <div class="card-block">
+            <div class="row">
+              <div class="col-md-6">
+                <h3>{{business.company}}</h3>
+                <p>Category: {{business.category}}</p>
+                <p>Address: {{business.street_address}}</p>
+                <p>{{business.description}}</p>
+              </div>
+              <div class="col-md-6">
+                <h5>Contacts Info</h5>
+                <ul class="list">
+                  <li>Phone: {{business.phone}}</li>
+                  <li>Zip: {{business.zipcode}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-right mt-2">
+        <button (click)="changeState('default')" type="button" class="btn btn-secondary">&larr; Go back</button>
+      </div>
+    </section>
 
     <section *ngIf="businesses">
       <h2>Business</h2>
-      <table class="table table-striped table-responsive w-100">
+      <table class="table table-striped small">
         <thead class="thead-inverse">
           <tr>
             <th>#</th>
@@ -41,23 +60,25 @@
             <!--<th>Phone</th>-->
             <th>State</th>
             <!--<th>Street address</th>-->
-            <th>Years in business</th>
+            <th>Years </th>
             <!--<th>Zipcode</th>-->
+            <th>&nbsp;</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let business of businesses; let index = index">
-            <th>{{index + 1}}</th>
-            <th>{{business.company}}</th>
-            <th>{{business.category}}</th>
-            <th>{{business.city}}</th>
-            <!--<th>{{business.description}}</th>-->
-            <th>{{business.email}}</th>
-            <!--<th>{{business.phone}}</th>-->
-            <th>{{business.state}}</th>
-            <!--<th>{{business.street_address}}</th>-->
-            <th>{{business.years_in_business}}</th>
-            <!--<th>{{business.zipcode}}</th>-->
+          <tr *ngFor="let business of businesses; index as i; trackBy: $key">
+            <th class="align-middle">{{i + 1}}</th>
+            <th class="align-middle">{{business.company}}</th>
+            <th class="align-middle text-center">{{business.category}}</th>
+            <th class="align-middle">{{business.city}}</th>
+            <th class="align-middle">{{business.email}}</th>
+            <th class="align-middle">{{business.state}}</th>
+            <th class="align-middle text-center">{{business.years_in_business}}</th>
+            <th class="align-middle text-right">
+              <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-primary">More</button>
+              <button  type="button" class="btn btn-warning">Edit</button>
+              <button  type="button" class="btn btn-danger">Delete</button>
+            </th>
           </tr>
         </tbody>
       </table>

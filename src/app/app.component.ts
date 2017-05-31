@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     );
   }
 
-  changeState(state: string, key: string) {
+  changeState(state: string, key?: string) {
     if (key) {
       this.activeKey = key;
     }
@@ -48,4 +48,36 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  addBusiness(
+    company: string,
+    category: string,
+    yers_in_business: number,
+    description: string,
+    phone: number,
+    email: string,
+    street_address: string,
+    city: string,
+    state: string,
+    zipcode: number
+  ) {
+    const createdAt = new Date().toString();
+
+    const newBusiness = {
+      company,
+      category,
+      yers_in_business,
+      description,
+      phone,
+      email,
+      street_address,
+      city,
+      state,
+      zipcode
+    };
+
+    this._firebaseServie.addBusiness(newBusiness);
+    this.changeState('default');
+  }
 }
+

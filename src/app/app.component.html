@@ -21,10 +21,10 @@
         <div class="card-block">
           <div class="row">
             <div class="col-md-6">
-              <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-primary">Add Business</button>
+              <button (click)="changeState('add')" type="button" class="btn btn-primary">Add Business</button>
             </div>
             <div class="col-md-6">
-              <select (change)="filterCategory(category.value)" #category class="form-control float-right">
+              <select (change)="filterCategory(categoryFilter.value)" #categoryFilter class="form-control float-right">
                 <option value="">Select Category</option>
                 <option value="{{category.name}}" *ngFor="let category of categories;">{{category.name}}</option>
               </select>
@@ -61,6 +61,88 @@
       </div>
       <div class="text-right mt-2">
         <button (click)="changeState('default')" type="button" class="btn btn-secondary">&larr; Go back</button>
+      </div>
+    </section>
+
+    <section *ngIf="appState === 'add'" class="my-4">
+      <div class="card">
+        <div class="card-header">
+          <h2>Add businesse</h2>
+        </div>
+        <div class="card-block">
+          <form
+              (submit)="addBusiness(company.value, category.value, yers_in_business.value,
+                description.value, phone.value, email.value, street_address.value, city.value, state.value, zipcode.value)"
+          >
+            <div class="form-group row">
+              <label for="company" class="col-2 col-form-label">Company</label>
+              <div class="col-10">
+                <input class="form-control" type="text" #company id="company">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="category" class="col-2 col-form-label">Categor</label>
+              <div class="col-10">
+                <select (change)="filterCategory(category.value)" id="category" #category class="form-control float-right">
+                  <option value="">Select Category</option>
+                  <option value="{{category.name}}" *ngFor="let category of categories;">{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="yers_in_business" class="col-2 col-form-label">Yers in business</label>
+              <div class="col-10">
+                <input class="form-control" type="number" #yers_in_business id="yers_in_business">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="description" class="col-2 col-form-label">Descriptions</label>
+              <div class="col-10">
+                <textarea class="form-control w-100" #description id="description" id="description" cols="30"
+                          rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="phone" class="col-2 col-form-label">Phone</label>
+              <div class="col-10">
+                <input class="form-control" type="phone" #phone id="phone">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email" class="col-2 col-form-label">Email</label>
+              <div class="col-10">
+                <input class="form-control" type="email" #email id="email">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="street_address" class="col-2 col-form-label">Address</label>
+              <div class="col-10">
+                <input class="form-control" type="text" #street_address id="street_address">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="city" class="col-2 col-form-label">City</label>
+              <div class="col-10">
+                <input class="form-control" type="text" #city id="city">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="state" class="col-2 col-form-label">State</label>
+              <div class="col-10">
+                <input class="form-control" type="text" #state id="state">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="zipcode" class="col-2 col-form-label">Zipcode</label>
+              <div class="col-10">
+                <input class="form-control" type="text" #zipcode id="zipcode">
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
 

@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import {Injectable} from '@angular/core';
+import {
+  AngularFireDatabase,
+  FirebaseListObservable
+} from 'angularfire2/database';
 
 import 'rxjs/add/operator/map';
 
-import { Business } from '../shared/Business.interface';
-import { Category } from '../shared/Category.interface';
+import {Business} from '../shared/Business.interface';
+import {Category} from '../shared/Category.interface';
 
 @Injectable()
 export class FirebaseService {
@@ -23,7 +26,6 @@ export class FirebaseService {
         }
       }) as FirebaseListObservable<Business[]>;
     } else {
-      console.log(category);
       this.businesses = this._db.list('/businesses') as FirebaseListObservable<Business[]>;
     }
 
@@ -34,4 +36,7 @@ export class FirebaseService {
     return this.categories = this._db.list('/categories') as FirebaseListObservable<Category[]>;
   }
 
+  addBusiness(business) {
+    return this.businesses.push(business); // TODO send to firebase
+  }
 }

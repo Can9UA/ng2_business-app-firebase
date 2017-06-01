@@ -3,6 +3,7 @@ import { FirebaseService } from './services/firebase.service';
 
 import { Business } from './shared/Business.interface';
 import { Category } from './shared/Category.interface';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -15,22 +16,38 @@ export class AppComponent implements OnInit {
   categories: Category[];
   appState: string;
   activeKey: string;
+  newBusinessForm: FormGroup;
 
-  constructor (private _firebaseServie: FirebaseService) {
+  constructor (private _firebaseServie: FirebaseService, private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this._firebaseServie.getBusinesses().subscribe(
-      businesses => {
-        this.businesses = businesses;
-      }
-    );
+    this._firebaseServie.getBusinesses()
+      .subscribe(
+        businesses => { this.businesses = businesses; }
+      );
 
-    this._firebaseServie.getCategories().subscribe(
-      categories => {
-        this.categories = categories;
-      }
-    );
+    this._firebaseServie.getCategories()
+      .subscribe(
+        categories => { this.categories = categories; }
+      );
+
+    this.buildForm();
+  }
+
+  buildForm() {
+    this.newBusinessForm = this.fb.group({
+      company: [],
+      category: [],
+      yers_in_business: [],
+      description: [],
+      phone: [],
+      email: [],
+      street_address: [],
+      city: [],
+      state: [],
+      zipcode: []
+    });
   }
 
   changeState(state: string, key?: string) {
@@ -49,34 +66,11 @@ export class AppComponent implements OnInit {
     );
   }
 
-  addBusiness(
-    company: string,
-    category: string,
-    yers_in_business: number,
-    description: string,
-    phone: number,
-    email: string,
-    street_address: string,
-    city: string,
-    state: string,
-    zipcode: number
-  ) {
+  addBusiness(form: FormGroup) {
     const createdAt = new Date().toString();
 
-    const newBusiness = {
-      company,
-      category,
-      yers_in_business,
-      description,
-      phone,
-      email,
-      street_address,
-      city,
-      state,
-      zipcode
-    };
-
-    this._firebaseServie.addBusiness(newBusiness);
+    // this._firebaseServie.addBusiness(form.value);
+    form.reset();
     this.changeState('default');
   }
 }

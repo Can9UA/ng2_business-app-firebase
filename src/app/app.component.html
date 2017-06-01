@@ -70,20 +70,17 @@
           <h2>Add businesse</h2>
         </div>
         <div class="card-block">
-          <form
-              (submit)="addBusiness(company.value, category.value, yers_in_business.value,
-                description.value, phone.value, email.value, street_address.value, city.value, state.value, zipcode.value)"
-          >
+          <form novalidate='' [formGroup]='newBusinessForm' (submit)='addBusiness(newBusinessForm)'>
             <div class="form-group row">
               <label for="company" class="col-2 col-form-label">Company</label>
               <div class="col-10">
-                <input class="form-control" type="text" #company id="company">
+                <input class="form-control" type="text" formControlName="company" id="company">
               </div>
             </div>
             <div class="form-group row">
               <label for="category" class="col-2 col-form-label">Categor</label>
               <div class="col-10">
-                <select (change)="filterCategory(category.value)" id="category" #category class="form-control float-right">
+                <select id="category" formControlName="category" class="form-control float-right">
                   <option value="">Select Category</option>
                   <option value="{{category.name}}" *ngFor="let category of categories;">{{category.name}}</option>
                 </select>
@@ -92,50 +89,50 @@
             <div class="form-group row">
               <label for="yers_in_business" class="col-2 col-form-label">Yers in business</label>
               <div class="col-10">
-                <input class="form-control" type="number" #yers_in_business id="yers_in_business">
+                <input class="form-control" type="number" formControlName="yers_in_business" id="yers_in_business">
               </div>
             </div>
             <div class="form-group row">
               <label for="description" class="col-2 col-form-label">Descriptions</label>
               <div class="col-10">
-                <textarea class="form-control w-100" #description id="description" id="description" cols="30"
+                <textarea class="form-control w-100" formControlName="description" id="description" id="description" cols="30"
                           rows="5"></textarea>
               </div>
             </div>
             <div class="form-group row">
               <label for="phone" class="col-2 col-form-label">Phone</label>
               <div class="col-10">
-                <input class="form-control" type="phone" #phone id="phone">
+                <input class="form-control" type="phone" formControlName="phone" id="phone">
               </div>
             </div>
             <div class="form-group row">
               <label for="email" class="col-2 col-form-label">Email</label>
               <div class="col-10">
-                <input class="form-control" type="email" #email id="email">
+                <input class="form-control" type="email" formControlName="email" id="email">
               </div>
             </div>
             <div class="form-group row">
               <label for="street_address" class="col-2 col-form-label">Address</label>
               <div class="col-10">
-                <input class="form-control" type="text" #street_address id="street_address">
+                <input class="form-control" type="text" formControlName="street_address" id="street_address">
               </div>
             </div>
             <div class="form-group row">
               <label for="city" class="col-2 col-form-label">City</label>
               <div class="col-10">
-                <input class="form-control" type="text" #city id="city">
+                <input class="form-control" type="text" formControlName="city" id="city">
               </div>
             </div>
             <div class="form-group row">
               <label for="state" class="col-2 col-form-label">State</label>
               <div class="col-10">
-                <input class="form-control" type="text" #state id="state">
+                <input class="form-control" type="text" formControlName="state" id="state">
               </div>
             </div>
             <div class="form-group row">
               <label for="zipcode" class="col-2 col-form-label">Zipcode</label>
               <div class="col-10">
-                <input class="form-control" type="text" #zipcode id="zipcode">
+                <input class="form-control" type="text" formControlName="zipcode" id="zipcode">
               </div>
             </div>
             <div class="form-group text-right">

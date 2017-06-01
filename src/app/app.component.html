@@ -152,13 +152,9 @@
             <th>Company</th>
             <th>Category</th>
             <th>City</th>
-            <!--<th>Description</th>-->
             <th>Email</th>
-            <!--<th>Phone</th>-->
             <th>State</th>
-            <!--<th>Street address</th>-->
             <th>Years </th>
-            <!--<th>Zipcode</th>-->
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -174,7 +170,7 @@
             <th class="align-middle text-right">
               <div class="btn-group">
                 <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-secondary">More</button>
-                <button  type="button" class="btn btn-secondary">Edit</button>
+                <button (click)="showEdit(business)" type="button" class="btn btn-secondary">Edit</button>
                 <button  type="button" class="btn btn-danger">Delete</button>
               </div>
             </th>

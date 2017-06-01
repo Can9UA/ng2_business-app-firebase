@@ -73,5 +73,9 @@ export class AppComponent implements OnInit {
     form.reset();
     this.changeState('default');
   }
+
+  showEdit(business: Business) {
+    console.log(business);
+  }
 }
 

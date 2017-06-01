@@ -78,7 +78,7 @@
               </div>
             </div>
             <div class="form-group row">
-              <label for="category" class="col-2 col-form-label">Categor</label>
+              <label for="category" class="col-2 col-form-label">Category</label>
               <div class="col-10">
                 <select id="category" formControlName="category" class="form-control float-right">
                   <option value="">Select Category</option>
@@ -143,6 +143,84 @@
       </div>
     </section>
 
+    <section *ngIf="appState === 'edit'" class="my-4">
+      <div class="card">
+        <div class="card-header">
+          <h2>Edit businesse</h2>
+        </div>
+        <div class="card-block">
+          <form novalidate='' (submit)='editBusiness(editableBusiness)'>
+            <div class="form-group row">
+              <label for="company_edit" class="col-2 col-form-label">Company</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.company" name="company" class="form-control" type="text"  id="company_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="category_edit" class="col-2 col-form-label">Category</label>
+              <div class="col-10">
+                <select id="category_edit" [(ngModel)]="editableBusiness.category" name="category" class="form-control float-right">
+                  <option value="">Select Category</option>
+                  <option value="{{category.name}}" *ngFor="let category of categories;">{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="yers_in_business_edit" class="col-2 col-form-label">Yers in business</label>
+              <div class="col-10">
+                <input class="form-control" [(ngModel)]="editableBusiness.years_in_business" name="years_in_business" type="number" id="yers_in_business_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="description_edit" class="col-2 col-form-label">Descriptions</label>
+              <div class="col-10">
+                <textarea [(ngModel)]="editableBusiness.description" name="description" class="form-control w-100" id="description_edit" cols="30" rows="5"></textarea>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="phone_edit" class="col-2 col-form-label">Phone</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.phone" name="phone" class="form-control" type="phone" id="phone_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="email_edit" class="col-2 col-form-label">Email</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.email" name="email" class="form-control" type="email" id="email_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="street_address_edit" class="col-2 col-form-label">Address</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.street_address" name="street_address" class="form-control" type="text" id="street_address_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="city_edit" class="col-2 col-form-label">City</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.city" name="city" class="form-control" type="text" id="city_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="state_edit" class="col-2 col-form-label">State</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.state" name="state" class="form-control" type="text" id="state_edit">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="zipcode_edit" class="col-2 col-form-label">Zipcode</label>
+              <div class="col-10">
+                <input [(ngModel)]="editableBusiness.zipcode" name="zipcode" class="form-control" type="text" id="zipcode_edit">
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button class="btn btn-primary" type="submit">Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <section *ngIf="businesses">
       <h2>Business</h2>
       <table class="table table-striped small">
@@ -159,7 +237,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let business of businesses; index as i; trackBy: $key">
+          <tr *ngFor="let business of businesses; index as i;">
             <th class="align-middle">{{i + 1}}</th>
             <th class="align-middle">{{business.company}}</th>
             <th class="align-middle text-center">{{business.category}}</th>
@@ -171,7 +249,7 @@
               <div class="btn-group">
                 <button (click)="changeState('extend', business.$key)" type="button" class="btn btn-secondary">More</button>
                 <button (click)="showEdit(business)" type="button" class="btn btn-secondary">Edit</button>
-                <button  type="button" class="btn btn-danger">Delete</button>
+                <button (click)="deleteBusiness(business.$key)" type="button" class="btn btn-danger">Delete</button>
               </div>
             </th>
           </tr>

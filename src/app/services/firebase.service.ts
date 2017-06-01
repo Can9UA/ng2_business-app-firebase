@@ -36,7 +36,15 @@ export class FirebaseService {
     return this.categories = this._db.list('/categories') as FirebaseListObservable<Category[]>;
   }
 
-  addBusiness(business) {
-    return this.businesses.push(business); // TODO send to firebase
+  addBusiness(business: Business) {
+    return this.businesses.push(business);
+  }
+
+  updateBusiness(key: string, business: Business) {
+    return this.businesses.update(key, business);
+  }
+
+  deleteBusiness(key: string) {
+    return this.businesses.remove(key);
   }
 }

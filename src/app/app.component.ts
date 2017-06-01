@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   appState: string;
   activeKey: string;
   newBusinessForm: FormGroup;
+  editableBusiness: Business;
 
   constructor (private _firebaseServie: FirebaseService, private fb: FormBuilder) {
   }
@@ -32,10 +33,10 @@ export class AppComponent implements OnInit {
         categories => { this.categories = categories; }
       );
 
-    this.buildForm();
+    this.buildForms();
   }
 
-  buildForm() {
+  buildForms() {
     this.newBusinessForm = this.fb.group({
       company: [],
       category: [],
@@ -69,13 +70,24 @@ export class AppComponent implements OnInit {
   addBusiness(form: FormGroup) {
     const createdAt = new Date().toString();
 
-    // this._firebaseServie.addBusiness(form.value);
+    this._firebaseServie.addBusiness(form.value);
     form.reset();
     this.changeState('default');
   }
 
   showEdit(business: Business) {
-    console.log(business);
+    this.activeKey = business.$key;
+    this.editableBusiness = { ...business };
+    this.changeState('edit', business.$key);
+  }
+
+  editBusiness(editableBusiness) {
+    this._firebaseServie.updateBusiness(this.activeKey, editableBusiness);
+    this.changeState('default');
+  }
+
+  deleteBusiness(key: string) {
+    this._firebaseServie.deleteBusiness(key);
   }
 }
 

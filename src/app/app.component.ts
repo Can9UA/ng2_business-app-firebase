@@ -68,8 +68,6 @@ export class AppComponent implements OnInit {
   }
 
   addBusiness(form: FormGroup) {
-    const createdAt = new Date().toString();
-
     this._firebaseServie.addBusiness(form.value);
     form.reset();
     this.changeState('default');

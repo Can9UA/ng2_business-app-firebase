@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService } from './services/firebase.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 import { Business } from './shared/Business.interface';
 import { Category } from './shared/Category.interface';
-import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [FirebaseService]
+  styleUrls: [ './app.component.css' ],
+  providers: [ FirebaseService ]
 })
 export class AppComponent implements OnInit {
   businesses: Business[];
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
   newBusinessForm: FormGroup;
   editableBusiness: Business;
 
-  constructor (private _firebaseServie: FirebaseService, private fb: FormBuilder) {
+  constructor(private _firebaseServie: FirebaseService, private fb: FormBuilder) {
   }
 
   ngOnInit() {

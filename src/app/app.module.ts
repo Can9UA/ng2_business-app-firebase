@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AngularFireModule } from 'angularfire2';
@@ -20,7 +23,8 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule
   ],
-  providers: [AngularFireDatabase],
-  bootstrap: [AppComponent]
+  providers: [ AngularFireDatabase ],
+  bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}
